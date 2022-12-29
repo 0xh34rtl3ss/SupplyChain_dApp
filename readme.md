@@ -1,4 +1,4 @@
-# OSProgramming
+# Supply Chain dApp
 
 Course : CSCI 4312 BLOCKCHAIN AND APPLICATION <br />
 Section : 1
