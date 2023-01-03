@@ -13,10 +13,10 @@ MUHAMMAD FATIH BIN ABDUL RAZAK  | 1919131
 
 ## Flow of Process
 
-![Activity Diagram](https://github.com/0xh34rtl3ss/SupplyChain_dApp/blob/main/assets/Screenshot%202023-01-03%20at%2022.11.50.png)
+![Activity Diagram](https://github.com/0xh34rtl3ss/SupplyChain_dApp/blob/main/assets/BC-Activity%20Diagram.drawio.png)
 
 *Activity Diagram*
 
-![Sequence Diagram](https://github.com/0xh34rtl3ss/SupplyChain_dApp/blob/main/assets/Sequence%20Diagram.png)
+![Sequence Diagram](https://github.com/0xh34rtl3ss/SupplyChain_dApp/blob/main/assets/BC-Sequence%20Diagram.drawio.png)
 
 *Sequence Diagram*
