@@ -40,7 +40,6 @@ contract SimpleStorage {
         bool registered;
 
     }
-
     struct Parcel {
         address sender;
         address currentOwner;
