@@ -66,42 +66,36 @@ contract SimpleStorage {
         admin = msg.sender;
     }
 
-    modifier isAdmin() {
+    modifier isAdmin {
         require(admin == msg.sender, "Access denied!");
         _;
     }
 
+
     modifier isRoleVerified {
+
     for(uint i = 0; i < allSenders.length; i++) {
         if(msg.sender == allSenders[i].senderID) {
-        if(allSenders[i].registered == true){
+            require(allSenders[i].registered == true);
             _;
-        }
-        else{revert();}
         }
     }
 
     for(uint i = 0; i < allHubs.length; i++) {
-        if(msg.sender == allHubs[i].hubID) {
-        if(allHubs[i].registered == true){
+        if(msg.sender == allSenders[i].senderID) {
+            require(allHubs[i].registered == true);
             _;
-        }
-        else{revert();}
         }
     }
 
     for(uint i = 0; i < allDelivery.length; i++) {
-        if(msg.sender == allDelivery[i].deliveryID) {
-        if(allDelivery[i].registered == true){
+        if(msg.sender == allSenders[i].senderID) {
+            require(allDelivery[i].registered == true);
             _;
         }
-        else{revert();}
-        }
     }
 
-
-    revert();
-    }
+}
 
 
 
@@ -151,16 +145,17 @@ contract SimpleStorage {
         allParcels.push(Parcel({sender:msg.sender,currentOwner:msg.sender,nextOwner:_nextOwner,tracking:_trackingID,locationCreated:_location,delivered:false}));
     }
 
-    function changeofOwnership(string memory _trackingID, address  _nextOwner) public{
-        uint256 index;
+    function changeofOwnership(string memory _trackingID, address  _nextOwner) public isRoleVerified {
+
         for (uint256 i = 0; i < allParcels.length; i++) {
             if (keccak256(abi.encodePacked(allParcels[i].tracking)) == keccak256(abi.encodePacked(_trackingID))) {
-                index = i;
-                break;
+                require(msg.sender == allParcels[i].nextOwner, "Access Denied!"); //check this comdition !!!
+                allParcels[i].nextOwner = address(_nextOwner);
+
         }
     }
         // Update the next owner of the parcel
-        allParcels[index].nextOwner = address(_nextOwner);
+        
 
     }
 
