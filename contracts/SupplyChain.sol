@@ -2,20 +2,22 @@
 pragma solidity ^0.8.15;
 
 contract SimpleStorage {
+
     event AllParcelInformation(
         address sender,
         address currentOwner,
         string tracking,
         string locationCreated
     );
-
     event AllSenderInformation(
         address senderID,
         string senderName,
-        string senderLocation
+        string senderLocation,
+        bool registered
     );
 
-    address admin;
+    
+
 
     struct Sender {
         address senderID;
@@ -53,7 +55,7 @@ contract SimpleStorage {
     Hub[] public allHubs;
     Delivery[] public allDelivery;
 
-
+    address admin;
     
     uint256 senderCount = 0;
     uint256 parcelCount = 0;
@@ -69,14 +71,38 @@ contract SimpleStorage {
         _;
     }
 
-    modifier senderIsAllowed {
+    modifier isRoleVerified {
     for(uint i = 0; i < allSenders.length; i++) {
         if(msg.sender == allSenders[i].senderID) {
-        _;
+        if(allSenders[i].registered == true){
+            _;
+        }
+        else{revert();}
         }
     }
+
+    for(uint i = 0; i < allHubs.length; i++) {
+        if(msg.sender == allHubs[i].hubID) {
+        if(allHubs[i].registered == true){
+            _;
+        }
+        else{revert();}
+        }
+    }
+
+    for(uint i = 0; i < allDelivery.length; i++) {
+        if(msg.sender == allDelivery[i].deliveryID) {
+        if(allDelivery[i].registered == true){
+            _;
+        }
+        else{revert();}
+        }
+    }
+
+
     revert();
     }
+
 
 
 //change of ownership (done), verify user , delivery (done)
@@ -99,8 +125,29 @@ contract SimpleStorage {
     }
 
 
+    function verifyRole(address target) public  isAdmin{
 
-    function addParcel(string memory _trackingID, string memory _location, address _nextOwner) public{      
+    for(uint i = 0; i < allSenders.length; i++) {
+        if(target == allSenders[i].senderID) {
+        allSenders[i].registered = true;
+        }
+    }
+
+    for(uint i = 0; i < allHubs.length; i++) {
+        if(target == allHubs[i].hubID) {
+        allHubs[i].registered = true;
+        }
+    }
+
+    for(uint i = 0; i < allDelivery.length; i++) {
+        if(target == allDelivery[i].deliveryID) {
+        allDelivery[i].registered = true;
+        }
+    }
+
+    }
+
+    function addParcel(string memory _trackingID, string memory _location, address _nextOwner) public isRoleVerified {      
         allParcels.push(Parcel({sender:msg.sender,currentOwner:msg.sender,nextOwner:_nextOwner,tracking:_trackingID,locationCreated:_location,delivered:false}));
     }
 
@@ -146,7 +193,8 @@ contract SimpleStorage {
             emit AllSenderInformation(
                 sender.senderID,
                 sender.senderName,
-                sender.senderLocation
+                sender.senderLocation,
+                sender.registered
             );
         }
     }
