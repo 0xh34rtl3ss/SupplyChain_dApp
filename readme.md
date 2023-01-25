@@ -12,7 +12,12 @@ MUHAMMAD FATIH BIN ABDUL RAZAK  | 1919131
 
 
 ## Project Background
-bla bla
+In today's fast-paced business environment, supply chain management plays a critical role in ensuring the timely and efficient movement of goods. However, traditional supply chain systems are often riddled with inefficiencies and lack transparency. This is where blockchain technology comes in.
+
+We propose to build a blockchain-based system to track logistics supply chain using Ethereum smart contracts. Blockchain technology offers a tamper-proof and decentralized ledger that can be used to track the movement of goods and ensure transparency throughout the supply chain. By using Ethereum smart contracts, we can automate the execution of complex logistics processes, reducing the need for manual intervention and minimizing the risk of errors.
+
+Our goal of this project is to showcase the change of ownership between involved parties (Hub, Sender, Customer) using blockchain instead of conventional databases.
+
 ## Requirement Analysis
 *Activity Diagram*
 ![Activity Diagram](https://github.com/0xh34rtl3ss/SupplyChain_dApp/blob/main/assets/img/BC-Activity%20Diagram.drawio.png)
