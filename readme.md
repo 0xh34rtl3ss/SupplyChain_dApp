@@ -19,11 +19,11 @@ We propose to build a blockchain-based system to track logistics supply chain us
 Our goal of this project is to showcase the change of ownership between involved parties (Hub, Sender, Customer) using blockchain instead of conventional databases.
 
 ## Requirement Analysis
-*Activity Diagram*
 ![Activity Diagram](https://github.com/0xh34rtl3ss/SupplyChain_dApp/blob/main/assets/img/BC-Activity%20Diagram.drawio.png)
+*Activity Diagram*
 
-*Sequence Diagram*
 ![Sequence Diagram](https://github.com/0xh34rtl3ss/SupplyChain_dApp/blob/main/assets/img/BC-Sequence%20Diagram.drawio.png)
+*Sequence Diagram*
 
 
 ## Screenshots
